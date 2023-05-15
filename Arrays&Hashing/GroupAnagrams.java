@@ -5,27 +5,43 @@ import java.util.Map;
 import java.util.List;
 
 public class GroupAnagrams {
-    public static List<List<String>> groupAnagrams(String[] tab) {
+    public static List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList<>();
-        if (tab.length == 0) {
+        if (strs.length == 0) {
             return result;
         }
-        Map<String, List<String>> groupedAnagrams = new HashMap<>();
-        for (String word : tab) {
-            char[] charArray = word.toCharArray();
-            Arrays.sort(charArray);
-            String sortedStr = String.valueOf(charArray);
-            System.out.println(sortedStr);
+        Map<String, List<String>> groupeOfAnagrams = new HashMap<>();
+        for (String word : strs) {
+            String sortedStr = sortString(word);
+            if (!groupeOfAnagrams.containsKey(sortedStr)) {
+                groupeOfAnagrams.put(sortedStr, new ArrayList<>());
+                groupeOfAnagrams.get(sortedStr).add(word);
+            } else {
+                groupeOfAnagrams.get(sortedStr).add(word);
+            }
         }
-        return null;
+        for (List<String> anagramList : groupeOfAnagrams.values()) {
+            result.add(anagramList);
+        }
+        return result;
     }
 
-    public static void printlist(List<List<String>> list) {
-        for (List<String> list2 : list) {
-            for (String string : list2) {
-                System.out.print(string + " ");
+    public static String sortString(String word) {
+        char[] charArray = word.toCharArray();
+        Arrays.sort(charArray);
+        return new String(charArray);
+    }
+
+    public static void printList(List<List<String>> list) {
+        for (List<String> anagramList : list) {
+            System.out.print("[");
+            for (int i = 0; i < anagramList.size(); i++) {
+                System.out.print(anagramList.get(i));
+                if (i < anagramList.size() - 1) {
+                    System.out.print(", ");
+                }
             }
-            System.out.println();
+            System.out.println("]");
         }
         System.out.println();
     }
@@ -34,10 +50,9 @@ public class GroupAnagrams {
         String[] test1 = new String[] { "eat", "tea", "tan", "ate", "nat", "bat" };
         String[] test2 = new String[] { "" };
         String[] test3 = new String[] { "a" };
-        String[] test4 = new String[] { "cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc" };
-        printlist(groupAnagrams(test1));
-        printlist(groupAnagrams(test2));
-        printlist(groupAnagrams(test3));
-        printlist(groupAnagrams(test4));
+        printList(groupAnagrams(test1));
+        printList(groupAnagrams(test2));
+        printList(groupAnagrams(test3));
+
     }
 }
