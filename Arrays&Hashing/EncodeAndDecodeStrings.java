@@ -5,7 +5,7 @@ public class EncodeAndDecodeStrings {
     public static String encode(List<String> listStr) {
         /*
          * @param strings: a list of strings
-         * 
+         *
          * @return: Encodes a list of strings to a single string
          */
         String encodedStr = "";
@@ -15,24 +15,24 @@ public class EncodeAndDecodeStrings {
         return encodedStr;
     }
 
-    public static List<String> decode(String strs) {
+    public static List<String> decode(String strEncoded) {
         /*
          * @param str: A string
-         * 
+         *
          * @return: decodes a single string to a list of strings
          */
-        List<String> listStrs = new ArrayList<>();
+        List<String> listDecodedStr = new ArrayList<>();
         int i = 0;
 
-        while (i < strs.length()) {
-            if (strs.charAt(i) == '#') {
-                int lengthOfNextWord = Character.getNumericValue(strs.charAt(i - 1));
-                listStrs.add(strs.substring(i + 1, i + lengthOfNextWord + 1));
+        while (i < strEncoded.length()) {
+            if (strEncoded.charAt(i) == '#') {
+                int lengthOfNextWord = Character.getNumericValue(strEncoded.charAt(i - 1));
+                listDecodedStr.add(strEncoded.substring(i + 1, i + lengthOfNextWord + 1));
                 i += lengthOfNextWord;
             }
             i++;
         }
-        return listStrs;
+        return listDecodedStr;
     }
 
     public static void main(String[] args) {

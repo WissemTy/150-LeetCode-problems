@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.List;
 
 public class GroupAnagrams {
-    public static List<List<String>> groupAnagrams(String[] strs) {
+    public static List<List<String>> groupAnagrams(String[] listStr) {
         List<List<String>> result = new ArrayList<>();
-        if (strs.length == 0) {
+        if (listStr.length == 0) {
             return result;
         }
         Map<String, List<String>> groupeOfAnagrams = new HashMap<>();
-        for (String word : strs) {
+        for (String word : listStr) {
             String sortedStr = sortString(word);
             if (!groupeOfAnagrams.containsKey(sortedStr)) {
                 groupeOfAnagrams.put(sortedStr, new ArrayList<>());

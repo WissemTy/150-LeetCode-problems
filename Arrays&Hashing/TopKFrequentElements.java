@@ -6,17 +6,17 @@ import java.util.Comparator;
 
 public class TopKFrequentElements {
     public static int[] topKFrequent(int[] tab, int k) {
-        Map<Integer, Integer> mapfrequence = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> mapFrequency = new HashMap<Integer, Integer>();
         for (int number : tab) {
-            if (mapfrequence.containsKey(number)) {
-                int frequence = mapfrequence.get(number);
-                mapfrequence.put(number, frequence + 1);
+            if (mapFrequency.containsKey(number)) {
+                int frequency = mapFrequency.get(number);
+                mapFrequency.put(number, frequency + 1);
             } else {
-                mapfrequence.put(number, 1);
+                mapFrequency.put(number, 1);
             }
         }
 
-        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapfrequence.entrySet()); // convert map to list
+        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapFrequency.entrySet()); // convert map to list
         list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder())); // sort list by value
 
         int[] result = new int[k];
@@ -27,7 +27,7 @@ public class TopKFrequentElements {
         return result;
     }
 
-    public static void printlist(int[] tab) {
+    public static void printList(int[] tab) {
         for (int number : tab) {
             System.out.print(number + " ");
         }
@@ -39,9 +39,9 @@ public class TopKFrequentElements {
         int[] test2 = new int[] { 1 };
         int[] test3 = new int[] { 1, 2 };
         int[] test4 = new int[] { 1, 2, 2, 3, 3, 3 };
-        printlist(topKFrequent(test1, 2)); // [1, 2]
-        printlist(topKFrequent(test2, 1)); // [1]
-        printlist(topKFrequent(test3, 2)); // [1, 2]
-        printlist(topKFrequent(test4, 1)); // [3]
+        printList(topKFrequent(test1, 2)); // [1, 2]
+        printList(topKFrequent(test2, 1)); // [1]
+        printList(topKFrequent(test3, 2)); // [1, 2]
+        printList(topKFrequent(test4, 1)); // [3]
     }
 }
